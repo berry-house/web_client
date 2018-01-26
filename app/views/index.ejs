@@ -9,7 +9,7 @@
       <span class="mdl-layout__title">Berry House</span>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="">Add Plant</a>
+        <a class="mdl-navigation__link" href="/plants/createPlant">Add Plant</a>
       </nav>
     </div>
   </header>
@@ -25,11 +25,34 @@
   </div>-->
   <main class="mdl-layout__content">
     <div class="mdl-grid">
+      <% data.forEach(function(item) { %>
       <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">Plant</h2>
+          <h2 class="mdl-card__title-text"><%=item['name']%></h2>
         </div>
+        <table class="mdl-data-table mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Time</th>
+              <th>Light Intensity</th>
+              <th>Soil Humidity</th>
+              <th>Soil Temperature</th>
+              <th>Air Temperature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric"><%=item['time']%></td>
+              <td><%=item['lightIntensity']%></td>
+              <td><%=item['soilHumidity']%></td>
+              <td><%=item['soilTemperature']%></td>
+              <td><%=item['airTemperature']%></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
+      <%  }); %>
     </div>
   </main>
 </div>

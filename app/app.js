@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser')
 var reload = require('reload');
 var mysql = require('mysql');
 
@@ -11,7 +12,7 @@ var connection = mysql.createConnection({
   database: 'berry_house'
 });
 
-connection.connect();
+app.set('connection', connection);
 
 app.set('port', process.env.PORT || 3000 );
 app.set('view engine', 'ejs');
@@ -22,6 +23,7 @@ app.locals.siteTitle = 'Berry House';
 app.use(express.static('app/public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/plants'));
+app.use(bodyParser.urlencoded({extended: true}))
 
 reload(app);
 

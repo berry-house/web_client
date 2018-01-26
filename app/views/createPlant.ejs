@@ -17,8 +17,19 @@
     <div class="mdl-grid">
       <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">Plant</h2>
+          <h2 class="mdl-card__title-text">Create plant</h2>
         </div>
+        <form action="/plants/createPlant" method="POST">
+          <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet ">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="name" name="name">
+              <label class="mdl-textfield__label" for="name">Name of new plant</label>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet ">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised">Create</button>
+          </div>
+        </form>
       </div>
     </div>
   </main>
