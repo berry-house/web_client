@@ -12,18 +12,16 @@ router.get('/plants/createPlant', function(req, res){
 });
 
 router.post('/plants/createPlant', function (req, res) {
-  var connection = req.app.get('connection');
-  connection.query('INSERT INTO plant (name) VALUES (\'' + req.body['name'] + '\')', function (err, result) {
-    if (err) throw err;
-  });
-  connection.query('INSERT INTO plant (name) VALUES (\'' + req.body['name'] + '\')', function (err, result) {
-    if (err) throw err;
-    connection.query('SELECT LAST_INSERT_ID()', function(err, result){
+  req.getConnection((error, con) => {
+    con.query('INSERT INTO plant (name) VALUES (\'' + req.body['name'] + '\')', (err, result) => {
       if (err) throw err;
-      var string = JSON.stringify(result);
-      var json = JSON.parse(string);
-      connection.query('INSERT INTO conditions (plantID, time, lightIntensity, soilHumidity, soilTemperature, airTemperature) VALUES (' + json[0]['LAST_INSERT_ID()'] + ', \'2018-01-19 01:00:00\', 5.0, 5.0, 5.0, 5.0)', function (err, result) {
+      con.query('SELECT LAST_INSERT_ID()', (err, result) => {
         if (err) throw err;
+        var string = JSON.stringify(result);
+        var json = JSON.parse(string);
+        con.query('INSERT INTO conditions (plantID, time, lightIntensity, soilHumidity, soilTemperature, airTemperature) VALUES (' + json[0]['LAST_INSERT_ID()'] + ', \'2018-01-19 01:00:00\', 5.0, 5.0, 5.0, 5.0)', (err, result) => {
+          if (err) throw err;
+        });
       });
     });
   });
