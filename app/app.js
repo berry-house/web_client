@@ -8,11 +8,11 @@ const expressValidator = require('express-validator');
 const app = express();
 
 var dbOptions = {
-  host:	    'localhost',
-	user: 	  'root',
-	password: 'a01631731',
-	port: 	   3306,
-	database: 'berry_house'
+  host:	    process.argv[2],
+	user: 	  process.argv[3],
+	password: process.argv[4],
+	port: 	  process.argv[5],
+	database: process.argv[6],
 };
 
 app.set('port', process.env.PORT || 3000 );
