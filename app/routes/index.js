@@ -4,7 +4,7 @@ mysql = require('mysql');
 
 router.get('/', (req, res) => {
   req.getConnection((error, conn) => {
-    conn.query("SELECT name, time, lightIntensity, soilHumidity, soilTemperature, airTemperature from plant, conditions where id = plantID", (err, result, fields) => {
+    conn.query("SELECT id, name, time, lightIntensity, soilHumidity, soilTemperature, airTemperature from plant, conditions where id = plantID", (err, result, fields) => {
       if (err) throw err;
       console.log(result);
       let string = JSON.stringify(result);

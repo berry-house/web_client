@@ -62,7 +62,7 @@
                     } else if (prev == item['id']){
                         %>
                         <tr>
-                        <td> <%=item['time']%></td>
+                        <td><%=item['time']%></td>
                         <td><%=item['lightIntensity']%></td>
                         <td><%=item['soilHumidity']%></td>
                         <td><%=item['soilTemperature']%></td>
@@ -80,26 +80,25 @@
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text"><%=item['name']%></h2>
                 </div>
-                <table class="mdl-data-table mdl-cell mdl-cell--middle mdl-cell--6-col mdl-cell--4-col-tablet mdl-js-data-table ">
-                    <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Light Intensity</th>
-                        <th>Soil Humidity</th>
-                        <th>Soil Temperature</th>
-                        <th>Air Temperature</th>
-                        <th>Options</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><%=item['time']%><td>
-                        <td><%=item['lightIntensity']%></td>
-                        <td><%=item['soilHumidity']%></td>
-                        <td><%=item['soilTemperature']%></td>
-                        <td><%=item['airTemperature']%></td>
+                <table id="table" class="mdl-data-table mdl-cell mdl-cell--middle mdl-cell--6-col mdl-cell--4-col-tablet mdl-js-data-table ">
+                  <thead>
+                  <tr>
+                      <th>Time</th>
+                      <th>Light Intensity</th>
+                      <th>Soil Humidity</th>
+                      <th>Soil Temperature</th>
+                      <th>Air Temperature</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td><%=item['time']%></td>
+                      <td><%=item['lightIntensity']%></td>
+                      <td><%=item['soilHumidity']%></td>
+                      <td><%=item['soilTemperature']%></td>
+                      <td><%=item['airTemperature']%></td>
 
-                    </tr>
+                  </tr>
                         <%
                     }
                     prev = item['id'];
@@ -139,6 +138,13 @@
 </dialog>
 <script>
     $(document).ready(function() {
+      $(document).ready(function() {
+    $('#table').DataTable( {
+        "scrollY":        "200px",
+        "scrollCollapse": true,
+        "paging":         false
+    } );
+} );
         'use strict';
         var dialogButtonDelete = document.querySelectorAll('.delete');
         var dialogDelete = document.querySelector('#dialogDelete');
