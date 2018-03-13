@@ -37,7 +37,7 @@
                                     <div class="mdl-card__title">
                                     <h2 class="mdl-card__title-text"><%=item['name']%></h2>
                     </div>
-                    <table class="mdl-data-table mdl-cell mdl-cell--middle mdl-cell--6-col mdl-cell--4-col-tablet mdl-js-data-table ">
+                    <table id="table" class="mdl-data-table mdl-cell mdl-cell--middle mdl-cell--6-col mdl-cell--4-col-tablet mdl-js-data-table ">
                         <thead>
                         <tr>
                             <th>Time</th>
@@ -138,12 +138,13 @@
 </dialog>
 <script>
     $(document).ready(function() {
-      $(document).ready(function() {
-    $('#table').DataTable( {
+    $('.mdl-data-table').DataTable( {
         "scrollY":        "200px",
         "scrollCollapse": true,
-        "paging":         false
-    } );
+        "paging":         false,
+        "ordering": false,
+        "info":     false,
+        "searching": false
 } );
         'use strict';
         var dialogButtonDelete = document.querySelectorAll('.delete');
