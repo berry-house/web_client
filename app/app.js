@@ -8,14 +8,14 @@ const expressValidator = require('express-validator');
 const app = express();
 
 var dbOptions = {
-  host:	    process.argv[2],
-	user: 	  process.argv[3],
+    host:	  process.argv[2],
+    user: 	process.argv[3],
 	password: process.argv[4],
 	port: 	  process.argv[5],
 	database: process.argv[6],
 };
 
-app.set('port', process.env.PORT || 3000 );
+app.set('port', 3000 );
 app.set('view engine', 'ejs');
 app.set('views', 'app/views');
 
@@ -28,8 +28,7 @@ app.use(require('./routes/index'));
 app.use(require('./routes/plants'));
 app.use(bodyParser.urlencoded({extended: true}))
 
-var server = app.listen(app.get('port'), function() {
-  console.log('Listening on port ' + app.get('port'));
-});
 
-reload(app);
+app.listen(app.get('port'), function() {
+    console.log('Listening on port ' + app.get('port'));
+});

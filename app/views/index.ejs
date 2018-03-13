@@ -1,60 +1,193 @@
 <!DOCTYPE html>
 <html>
 <head><% include templates/head.ejs%></head>
-  <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout-icon"></div>
-    <div class="mdl-layout__header-row">
-      <span class="mdl-layout__title">Berry House</span>
-      <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="/plants/createPlant">Add Plant</a>
-      </nav>
-    </div>
-  </header>
-  <!--<div class="mdl-layout__drawer">
-    <span class="mdl-layout__title">Navigation</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="#">Hello</a>
-      <a class="mdl-navigation__link" href="#">World.</a>
-      <a class="mdl-navigation__link" href="#">How</a>
-      <a class="mdl-navigation__link" href="#">Are</a>
-      <a class="mdl-navigation__link" href="#">You?</a>
-    </nav>
-  </div>-->
-  <main class="mdl-layout__content">
-    <div class="mdl-grid">
-      <% data.forEach(function(item) { %>
-      <div class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-shadow--4dp">
-        <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text"><%=item['name']%></h2>
-        </div>
-        <table class="mdl-data-table mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-          <thead>
-            <tr>
-              <th class="mdl-data-table__cell--non-numeric">Time</th>
-              <th>Light Intensity</th>
-              <th>Soil Humidity</th>
-              <th>Soil Temperature</th>
-              <th>Air Temperature</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="mdl-data-table__cell--non-numeric"><%=item['time']%></td>
-              <td><%=item['lightIntensity']%></td>
-              <td><%=item['soilHumidity']%></td>
-              <td><%=item['soilTemperature']%></td>
-              <td><%=item['airTemperature']%></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout-icon"></div>
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout__title">Berry House</span>
+            <div class="mdl-layout-spacer"></div>
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
 
-      <%  }); %>
-    </div>
-  </main>
+                <a class="mdl-navigation__link" href="/plants/createPlant">Add Plant</a>
+            </nav>
+
+        </div>
+    </header>
+    <!--<div class="mdl-layout__drawer">
+      <span class="mdl-layout__title">Navigation</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="#">Hello</a>
+        <a class="mdl-navigation__link" href="#">World.</a>
+        <a class="mdl-navigation__link" href="#">How</a>
+        <a class="mdl-navigation__link" href="#">Are</a>
+        <a class="mdl-navigation__link" href="#">You?</a>
+      </nav>
+    </div>-->
+    <main class="mdl-layout__content">
+        <div class="mdl-grid">
+            <%
+                var prev;
+                var counter = 0;
+                data.forEach(function(item) {
+                    if(counter === 0){
+                        %>
+                        <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--4dp">
+                                    <div class="mdl-card__title">
+                                    <h2 class="mdl-card__title-text"><%=item['name']%></h2>
+                    </div>
+                    <table class="mdl-data-table mdl-cell mdl-cell--middle mdl-cell--6-col mdl-cell--4-col-tablet mdl-js-data-table ">
+                        <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Light Intensity</th>
+                            <th>Soil Humidity</th>
+                            <th>Soil Temperature</th>
+                            <th>Air Temperature</th>
+                            <th>Options</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><%=item['time']%></td>
+                            <td><%=item['lightIntensity']%></td>
+                            <td><%=item['soilHumidity']%></td>
+                            <td><%=item['soilTemperature']%></td>
+                            <td><%=item['airTemperature']%></td>
+                            <td>
+                                <a id="<%=item['id']%>" class="edit" href="#"><i class="material-icons">mode_edit</i></a>
+                                <a id="<%=item['id']%>" class="delete" href="#"><i class="material-icons">delete_forever</i></a>
+                            </td>
+                        </tr>
+                        <%
+                            prev = item['id'];
+                            counter++;
+                    } else if (prev == item['id']){
+                        %>
+                        <tr>
+                        <td> <%=item['time']%></td>
+                        <td><%=item['lightIntensity']%></td>
+                        <td><%=item['soilHumidity']%></td>
+                        <td><%=item['soilTemperature']%></td>
+                        <td><%=item['airTemperature']%></td>
+                        <td>
+                            <a id="<%=item['id']%>" class="edit" href="#"><i class="material-icons">mode_edit</i></a>
+                            <a id="<%=item['id']%>" class="delete" href="#"><i class="material-icons">delete_forever</i></a>
+                        </td>
+                        </tr>
+                        <%
+                        prev = item['id'];
+                        counter++;
+                    } else if (prev != item['id'] && counter != 0){
+                        %></tbody>
+                        </table>
+                        </div>
+            <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--4dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text"><%=item['name']%></h2>
+                </div>
+                <table class="mdl-data-table mdl-cell mdl-cell--middle mdl-cell--6-col mdl-cell--4-col-tablet mdl-js-data-table ">
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Light Intensity</th>
+                        <th>Soil Humidity</th>
+                        <th>Soil Temperature</th>
+                        <th>Air Temperature</th>
+                        <th>Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><%=item['time']%><td>
+                        <td><%=item['lightIntensity']%></td>
+                        <td><%=item['soilHumidity']%></td>
+                        <td><%=item['soilTemperature']%></td>
+                        <td><%=item['airTemperature']%></td>
+                        <td>
+                            <a id="<%=item['id']%>" class="edit" href="#"><i class="material-icons">mode_edit</i></a>
+                            <a id="<%=item['id']%>" class="delete" href="#"><i class="material-icons">delete_forever</i></a>
+                        </td>
+                    </tr>
+                        <%
+                    }
+                    prev = item['id'];
+                    counter++;
+
+              }); %>
+        </div>
+    </main>
+
 </div>
-  </body>
+<dialog id="dialogDelete" class="mdl-dialog">
+        <h3 class="mdl-dialog__title">Delete beautiful plant</h3>
+        <div class="mdl-dialog__content">
+            <p>
+                Are you sure you want to delete this plant?
+            </p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button">Close</button>
+            <button id="deleteCom" type="button" class="mdl-button">Delete</button>
+        </div>
+</dialog>
+
+<dialog id="dialogEdit" class="mdl-dialog">
+
+        <h3 class="mdl-dialog__title">Edit plant</h3>
+        <div class="mdl-dialog__content">
+            <p>
+                Edit
+            </p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button">Close</button>
+            <button id="editCom" type="button" class="mdl-button">Edit</button>
+        </div>
+
+</dialog>
+<script>
+    $(document).ready(function() {
+        'use strict';
+        var dialogButtonDelete = document.querySelectorAll('.delete');
+        var dialogDelete = document.querySelector('#dialogDelete');
+        if (! dialogDelete.showModal) {
+            dialogPolyfill.registerDialog(dialogDelete);
+        }
+        for (var i = 0; i < dialogButtonDelete.length; i++){
+            var id = dialogButtonDelete[i].getAttribute('id');
+            dialogButtonDelete[i].addEventListener('click', function() {
+                dialogDelete.showModal();
+                var deleteButton = document.querySelector('#deleteCom');
+                deleteButton.addEventListener('click', function () {
+                    $.post("/plants/deletePlant/" + id).always(function () {
+                        location.reload();
+                    });
+                    location.reload();
+                });
+            });
+        }
+        dialogDelete.querySelector('button:not([disabled])')
+            .addEventListener('click', function() {
+                dialogDelete.close();
+            });
+
+        var dialogButtonEdit = document.querySelectorAll('.edit');
+        var dialogEdit = document.querySelector('#dialogEdit');
+        if (! dialogEdit.showModal) {
+            dialogPolyfill.registerDialog(dialogEdit);
+        }
+        for (var i = 0; i < dialogButtonDelete.length; i++){
+            dialogButtonEdit[i].addEventListener('click', function() {
+                dialogEdit.showModal();
+            });
+        }
+        dialogEdit.querySelector('button:not([disabled])')
+            .addEventListener('click', function() {
+                dialogEdit.close();
+            });
+    });
+</script>
+</body>
 </html>
