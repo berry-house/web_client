@@ -45,7 +45,6 @@
                             <th>Soil Humidity</th>
                             <th>Soil Temperature</th>
                             <th>Air Temperature</th>
-                            <th>Options</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,10 +54,7 @@
                             <td><%=item['soilHumidity']%></td>
                             <td><%=item['soilTemperature']%></td>
                             <td><%=item['airTemperature']%></td>
-                            <td>
-                                <a id="<%=item['id']%>" class="edit" href="#"><i class="material-icons">mode_edit</i></a>
-                                <a id="<%=item['id']%>" class="delete" href="#"><i class="material-icons">delete_forever</i></a>
-                            </td>
+
                         </tr>
                         <%
                             prev = item['id'];
@@ -71,10 +67,7 @@
                         <td><%=item['soilHumidity']%></td>
                         <td><%=item['soilTemperature']%></td>
                         <td><%=item['airTemperature']%></td>
-                        <td>
-                            <a id="<%=item['id']%>" class="edit" href="#"><i class="material-icons">mode_edit</i></a>
-                            <a id="<%=item['id']%>" class="delete" href="#"><i class="material-icons">delete_forever</i></a>
-                        </td>
+
                         </tr>
                         <%
                         prev = item['id'];
@@ -105,10 +98,7 @@
                         <td><%=item['soilHumidity']%></td>
                         <td><%=item['soilTemperature']%></td>
                         <td><%=item['airTemperature']%></td>
-                        <td>
-                            <a id="<%=item['id']%>" class="edit" href="#"><i class="material-icons">mode_edit</i></a>
-                            <a id="<%=item['id']%>" class="delete" href="#"><i class="material-icons">delete_forever</i></a>
-                        </td>
+
                     </tr>
                         <%
                     }
