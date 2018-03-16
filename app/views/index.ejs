@@ -2,20 +2,9 @@
 <html>
 <head><% include templates/head.ejs%></head>
 <body>
-  <style>
-.demo-card-square.mdl-card {
-  width: 320px;
-  height: 320px;
-}
-.demo-card-square > .mdl-card__title {
-  color: #fff;
-  background:
-    url('https://images.unsplash.com/photo-1471194402529-8e0f5a675de6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9a1d4952cb9ecb722b2bf16deda6d9cb&auto=format&fit=crop&w=750&q=80') bottom right 15% no-repeat #46B6AC;
-}
-</style>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
-        <div class="mdl-layout-icon"></div>
+        <div class="mdl-layout-icon"><img src="/images/berry.png" class="icon"></div>
         <div class="mdl-layout__header-row">
             <span class="mdl-layout__title">Berry House</span>
             <div class="mdl-layout-spacer"></div>
@@ -37,6 +26,7 @@
       </nav>
     </div>-->
     <main class="mdl-layout__content">
+      <div class="mdl-cell--hide-phone fab--desktop-spacer"></div>
         <div class="mdl-grid">
             <%
                 var prev;
@@ -44,11 +34,11 @@
                 data.forEach(function(item) {
                     if(counter === 0){
                         %>
-                        <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--4dp">
-                                    <div class="mdl-card__title">
+                        <div class="demo-card-square mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--4dp">
+                                    <div class="mdl-card__title mdl-card--expand">
                                     <h2 class="mdl-card__title-text"><%=item['name']%></h2>
                     </div>
-                    <table id="table" class="mdl-data-table mdl-cell mdl-cell--middle mdl-cell--6-col mdl-cell--4-col-tablet mdl-js-data-table ">
+                    <table id="table" class="mdl-data-table mdl-js-data-table ">
                         <thead>
                         <tr>
                             <th>Time</th>
@@ -87,12 +77,12 @@
                         %></tbody>
                         </table>
                         </div>
-            <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--4dp">
-                <div class="mdl-card__title">
+            <div class="demo-card-square mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--4dp">
+                <div class="mdl-card__title mdl-card--expand">
                     <h2 class="mdl-card__title-text"><%=item['name']%></h2>
 
                 </div>
-                <table id="table" class="mdl-data-table mdl-cell mdl-cell--middle mdl-cell--6-col mdl-cell--4-col-tablet mdl-js-data-table">
+                <table id="table" class="mdl-data-table mdl-js-data-table">
                   <thead>
                   <tr>
                       <th>Time</th>
@@ -118,6 +108,7 @@
 
               }); %>
         </div>
+
     </main>
 
 </div>
@@ -150,6 +141,10 @@
 </dialog>
 <script>
     $(document).ready(function() {
+      if (document.getElementById('fab--desktop')) {
+    var fab = document.getElementById('fab--desktop').innerHTML;
+    $(".mdl-layout__header-row").append(fab);
+  }
     $('.mdl-data-table').DataTable( {
         "scrollY":        "200px",
         "scrollX": false,
