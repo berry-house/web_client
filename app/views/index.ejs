@@ -38,6 +38,51 @@
                                     <div class="mdl-card__title mdl-card--expand">
                                     <h2 class="mdl-card__title-text"><%=item['name']%></h2>
                     </div>
+                    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                        <div class="mdl-tabs__tab-bar">
+                            <a href="#table" class="mdl-tabs__tab is-active">Table</a>
+                            <a href="#light" class="mdl-tabs__tab">Light</a>
+                            <a href="#humidity" class="mdl-tabs__tab">Humidity</a>
+                            <a href="#temp" class="mdl-tabs__tab">Temperature</a>
+                            <a href="#air" class="mdl-tabs__tab">Air</a>
+                        </div>
+                        <div class="mdl-tabs__panel is-active" id="table">
+                            <ul>
+                                <li>Eddard</li>
+                                <li>Catelyn</li>
+                                <li>Robb</li>
+                                <li>Sansa</li>
+                                <li>Brandon</li>
+                                <li>Arya</li>
+                                <li>Rickon</li>
+                            </ul>
+                        </div>
+                        <div class="mdl-tabs__panel" id="light">
+                            <ul>
+                                <li>Tywin</li>
+                                <li>Cersei</li>
+                                <li>Jamie</li>
+                                <li>Tyrion</li>
+                            </ul>
+                        </div>
+                        <div class="mdl-tabs__panel" id="humidity">
+                            <ul>
+                                <li>Viserys</li>
+                                <li>Daenerys</li>
+                            </ul>
+                        </div>
+                        <div class="mdl-tabs__panel" id="temp">
+                            <ul>
+                                <li>Viserys</li>
+                                <li>Daenerys</li>
+                            </ul>
+                        </div>
+                        <div class="mdl-tabs__panel" id="air">
+                            <ul>
+                                <li>Viserys</li>
+                                <li>Daenerys</li>
+                            </ul>
+                        </div>
                     <table id="table" class="mdl-data-table mdl-js-data-table ">
                         <thead>
                         <tr>
@@ -76,6 +121,7 @@
                     } else if (prev != item['id'] && counter != 0){
                         %></tbody>
                         </table>
+                        </div>
                         </div>
             <div class="demo-card-square mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--4dp">
                 <div class="mdl-card__title mdl-card--expand">
