@@ -31,7 +31,20 @@
             <%
                 var prev;
                 var counter = 0;
+                var labels = [];
+                var lightValues = [];
+                var humidityValues = [];
+                var soilTemperatureValues = [];
+                //var airTemperatureValues = [];
+                console.log('data');
+                console.log(data);
                 data.forEach(function(item) {
+                  var date = new Date(item['time']);
+                  labels.push(date.getHours()+date.getMinutes().toString()+date.getSeconds().toString());
+                  lightValues.push(item['lightIntensity']);
+                  humidityValues.push(item['soilHumidity']);
+                  soilTemperatureValues.push(item['soilTemperature']);
+                  //airTemperatureValues.push(item['airTemperature']);
                     if(counter === 0){
                         %>
                         <div class="demo-card-square mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--4dp">
@@ -44,24 +57,24 @@
                             <a href="#light" class="mdl-tabs__tab">Light</a>
                             <a href="#humidity" class="mdl-tabs__tab">Humidity</a>
                             <a href="#temp" class="mdl-tabs__tab">Temperature</a>
-                            <a href="#air" class="mdl-tabs__tab">Air</a>
+                            <!-- <a href="#air" class="mdl-tabs__tab">Air</a> -->
                         </div>
                         <div class="mdl-tabs__panel" id="light">
-                            <h1>Graph <%=item['name']%></h1>
-                            <!-- Graph -->
+                            <!-- <h1>Graph <%=item['name']%></h1> -->
+                            <div class="ct-chart ct-perfect-fourth" id="chartLight" style="height: 200px; width:600px;"></div>
                         </div>
                         <div class="mdl-tabs__panel" id="humidity">
-                            <h1>Graph <%=item['name']%></h1>
-                            <!-- Graph -->
+                            <!-- <h1>Graph <%=item['name']%></h1> -->
+                            <div class="ct-chart ct-perfect-fourth" id="chartHumidity" style="height: 200px; width:600px;"></div>
                         </div>
                         <div class="mdl-tabs__panel" id="temp">
-                            <h1>Graph <%=item['name']%></h1>
-                            <!-- Graph -->
+                          <!-- <h1>Graph <%=item['name']%></h1> -->
+                          <div class="ct-chart ct-perfect-fourth" id="chartTemperatureSoil" style="height: 200px; width:600px;"></div>
                         </div>
-                        <div class="mdl-tabs__panel" id="air">
-                            <h1>Graph <%=item['name']%></h1>
-                            <!-- Graph -->
-                        </div>
+                        <!-- <div class="mdl-tabs__panel" id="air">
+                          <h1>Graph <%=item['name']%></h1>
+                          <div class="ct-chart ct-perfect-fourth" id="chartTemperatureAir" style="height: 200px; width:600px;"></div>
+                        </div> -->
                         <div class="mdl-tabs__panel is-active" id="table">
                             <table id="table" class="mdl-data-table mdl-js-data-table ">
                                 <thead>
@@ -80,7 +93,7 @@
                                     <td><%=item['soilHumidity']%></td>
                                     <td><%=item['soilTemperature']%></td>
                                     <td><%=item['airTemperature']%></td>
-        
+
                                 </tr>
                                 <%
                                     prev = item['id'];
@@ -93,7 +106,7 @@
                                 <td><%=item['soilHumidity']%></td>
                                 <td><%=item['soilTemperature']%></td>
                                 <td><%=item['airTemperature']%></td>
-        
+
                                 </tr>
                                 <%
                                 prev = item['id'];
@@ -118,21 +131,21 @@
                         <a href="#air" class="mdl-tabs__tab">Air</a>
                     </div>
                     <div class="mdl-tabs__panel" id="light">
-                        <h1>Graph <%=item['name']%></h1>
-                        <!-- Graph -->
+                        <!-- <h1>Graph <%=item['name']%></h1> -->
+                        <div class="ct-chart ct-perfect-fourth" id="chart1" style="height: 200px; width:600px;"></div>
                     </div>
                     <div class="mdl-tabs__panel" id="humidity">
-                        <h1>Graph <%=item['name']%></h1>
-                        <!-- Graph -->
+                        <!-- <h1>Graph <%=item['name']%></h1> -->
+                        <div class="ct-chart ct-perfect-fourth" id="chartHumidity" style="height: 200px; width:600px;"></div>
                     </div>
                     <div class="mdl-tabs__panel" id="temp">
-                        <h1>Graph <%=item['name']%></h1>
-                        <!-- Graph -->
+                        <!-- <h1>Graph <%=item['name']%></h1> -->
+                        <div class="ct-chart ct-perfect-fourth" id="chartTemperatureSoil" style="height: 200px; width:600px;"></div>
                     </div>
-                    <div class="mdl-tabs__panel" id="air">
+                    <!-- <div class="mdl-tabs__panel" id="air">
                         <h1>Graph <%=item['name']%></h1>
-                        <!-- Graph -->
-                    </div>
+                        <div class="ct-chart ct-perfect-fourth" id="chartTemperatureAir" style="height: 200px; width:600px;"></div>
+                    </div> -->
                     <div class="mdl-tabs__panel is-active" id="table">
 
                         <table id="table" class="mdl-data-table mdl-js-data-table">
@@ -152,13 +165,12 @@
                               <td><%=item['soilHumidity']%></td>
                               <td><%=item['soilTemperature']%></td>
                               <td><%=item['airTemperature']%></td>
-        
+
                           </tr>
                                 <%
                             }
                             prev = item['id'];
                             counter++;
-        
                       }); %>
                     </div>
                 </div>
@@ -246,6 +258,30 @@
             .addEventListener('click', function() {
                 dialogEdit.close();
             });
+        var options = {
+          width: 400,
+          height: 300
+        };
+        new Chartist.Line('#chartLight', {
+          labels: [<%= labels  %>],
+          series: [[<%= lightValues  %>]],
+          // options
+        });
+        new Chartist.Line('#chartHumidity', {
+          labels: [<%= labels  %>],
+          series: [[<%= humidityValues  %>]],
+          // options
+        });
+        new Chartist.Line('#chartTemperatureSoil', {
+          labels: [<%= labels  %>],
+          series: [[<%= soilTemperatureValues  %>]],
+          // options
+        });
+        // new Chartist.Line('#chartTemperatureAir', {
+        //   labels: [<%= labels %>],
+        //   series: [[<%= airTemperatureValues %>]],
+        //   // options
+        // });
     });
 </script>
 </body>
