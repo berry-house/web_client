@@ -58,15 +58,21 @@
                         </div>
                         <div class="mdl-tabs__panel" id="light">
                             <!-- <h1>Graph <%=item['name']%></h1> -->
-                            <div class="ct-chart ct-perfect-fourth" id="chartLight" style="height: 200px; width:600px;"></div>
+                            <div class="mdl-grid">
+                                <div class="ct-chart ct-perfect-fourth mdl-cell--6-col" id="chartLight" style="height: 233px;"></div>
+                            </div>
                         </div>
                         <div class="mdl-tabs__panel" id="humidity">
                             <!-- <h1>Graph <%=item['name']%></h1> -->
-                            <div class="ct-chart ct-perfect-fourth" id="chartHumidity" style="height: 200px; width:600px;"></div>
+                            <div class="mdl-grid">
+                                <div class="ct-chart ct-perfect-fourth mdl-cell--6-col" id="chartHumidity" style="height: 233px;"></div>
+                            </div>
                         </div>
                         <div class="mdl-tabs__panel" id="temp">
                           <!-- <h1>Graph <%=item['name']%></h1> -->
-                          <div class="ct-chart ct-perfect-fourth" id="chartTemperatureSoil" style="height: 200px; width:600px;"></div>
+                            <div class="mdl-grid">
+                                <div class="ct-chart ct-perfect-fourth mdl-cell--6-col" id="chartTemperatureSoil" style="height: 233px;"></div>
+                            </div>
                         </div>
                         <div class="mdl-tabs__panel is-active" id="table">
                             <table id="table" class="mdl-data-table mdl-js-data-table ">
@@ -121,19 +127,25 @@
                         <a href="#light" class="mdl-tabs__tab">Light</a>
                         <a href="#humidity" class="mdl-tabs__tab">Humidity</a>
                         <a href="#temp" class="mdl-tabs__tab">Temperature</a>
-                        <a href="#air" class="mdl-tabs__tab">Air</a>
+                        <!--<a href="#air" class="mdl-tabs__tab">Air</a>-->
                     </div>
                     <div class="mdl-tabs__panel" id="light">
                         <!-- <h1>Graph <%=item['name']%></h1> -->
-                        <div class="ct-chart ct-perfect-fourth" id="chart1" style="height: 200px; width:600px;"></div>
+                        <div class="mdl-grid">
+                            <div class="ct-chart ct-perfect-fourth mdl-cell--6-col" id="chartLight" style="height: 233px;"></div>
+                        </div>
                     </div>
                     <div class="mdl-tabs__panel" id="humidity">
                         <!-- <h1>Graph <%=item['name']%></h1> -->
-                        <div class="ct-chart ct-perfect-fourth" id="chartHumidity" style="height: 200px; width:600px;"></div>
+                        <div class="mdl-grid">
+                            <div class="ct-chart ct-perfect-fourth mdl-cell--6-col" id="chartHumidity" style="height: 233px;"></div>
+                        </div>
                     </div>
                     <div class="mdl-tabs__panel" id="temp">
                         <!-- <h1>Graph <%=item['name']%></h1> -->
-                        <div class="ct-chart ct-perfect-fourth" id="chartTemperatureSoil" style="height: 200px; width:600px;"></div>
+                        <div class="mdl-grid">
+                            <div class="ct-chart ct-perfect-fourth mdl-cell--6-col" id="chartTemperatureSoil" style="height: 233px;"></div>
+                        </div>
                     </div>
                     <div class="mdl-tabs__panel is-active" id="table">
 
@@ -249,7 +261,7 @@
             });
         var options = {
           width: 400,
-          height: 300
+          height: 200
         };
         new Chartist.Line('#chartLight', {
           labels: [<%= labels  %>],
